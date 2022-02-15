@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FFB200</color>
+    <color name="purple_700">#332F2F</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#454141</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="firstFragmentBackgroundColorPink">#F6DCD0</color>
+    <color name="firstFragmentButtonColorMoreInfo">#FFB200</color>
+    <color name="searchCircleColorPinkAddVisible70Percent">#C4C4C4</color>
+    <color name="backgroundLocationColorGrey">#E88961</color>
+    <color name="searchTextColorGrey">#D3D3D3</color>
+    <color name="firstFragmentTextInFotoColorGreyAddVisible50Percent">#B3D3D3D3</color>
+
+    <color name="colorMenu">#FFF8F8</color>
+
+
+    <color name="textInMenu">#383838</color>
+
+    <color name="textColorInMenu">#5E5E5E</color>
+
+
+    <color name="colorRadioButton">#0047FF</color>
+    <color name="colorClearButtonInMenu">#FF8400</color>
+
+</resources>

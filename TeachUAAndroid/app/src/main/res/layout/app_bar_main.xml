@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+          >
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="135dp"
+        android:gravity="center">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/content_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:background="@drawable/background"
+
+
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/locationContainer"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/locationcontainer" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="12dp">
+
+                <ImageView
+                    android:id="@+id/locationIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="27dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="2dp"
+
+                    app:srcCompat="@drawable/ic_location_icon_vector_24263344" />
+
+                <TextView
+                    android:id="@+id/locationInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Kyiv"
+                    android:textColor="@color/white"
+                    android:textSize="19sp" />
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/toolbarContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/appTitle"
+                        android:layout_width="233dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Ініціатива
+                “Навчай українською”"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_anchor="@+id/appBarLayout"
+                        app:layout_anchorGravity="center" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:id="@+id/myRectangleView"
+                                android:layout_width="275dp"
+                                android:layout_height="38dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="23dp"
+                                android:background="@drawable/rounded_search_button" />
+
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="208dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="17dp"
+                                android:backgroundTint="@color/searchTextColorGrey"
+                                android:hint="Який гурток ви шукаєте?"
+                                android:inputType="textEmailAddress"
+                                android:textColor="@color/searchTextColorGrey"
+                                android:textColorHint="@color/searchTextColorGrey"
+                                android:textSize="14sp"
+                                app:boxBackgroundColor="@null" />
+
+
+                            <ImageButton
+                                android:id="@+id/searchImageButton"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_alignEnd="@id/myRectangleView"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/search_circle" />
+
+                            <ImageView
+                                android:id="@+id/searchImageViewIcon"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_alignEnd="@id/myRectangleView"
+                                android:layout_centerInParent="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginEnd="-2dp"
+                                android:background="@drawable/ic_free_search_icon_free_vector" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
