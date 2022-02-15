@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ArrayAdapter spinnerStopBusAdapter; // адаптер для спіннера
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,21 +101,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         recyclerAndCardConnection();
         componentsFromNavigationView();
+
         createSpinnerCity();
-
-
         createAreaToCity();
-        createCityArea();
+        createBusStop();
         createGoupsCategory();
         createChilderAge();
 
 
-
-
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupWithNavController(navigationView, navController);
-
 
 
     }
@@ -180,44 +176,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-
-    public void createCityArea() {
-        spinnerStopBus = findViewById(R.id.spinnerBusStop);
-        //spinnerStopBus.setOnItemSelectedListener(this);
-
-        mapForBusTop = new HashMap<String, ArrayList<String>>();
-
-        ArrayList<String> busStopLviv = new ArrayList<String>();
-        busStopLviv.add("Виберіть зупинку");
-        busStopLviv.add("Зупинка Личаківський 1");
-        busStopLviv.add("Зупинка Личаківський 2");
-        busStopLviv.add("Зупинка Личаківський 3");
-        busStopLviv.add("Зупинка Личаківський 4");
-        busStopLviv.add("Зупинка Личаківський 5");
-        busStopLviv.add("Зупинка Личаківський 6");
-        busStopLviv.add("Зупинка Личаківський 7");
-
-        mapForBusTop.put("Личаківський район", busStopLviv);
-
-        ArrayList<String> busStopKyiv = new ArrayList<String>();
-        busStopLviv.add("Виберіть зупинку");
-        busStopLviv.add("Зупинка Печерський 1");
-        busStopLviv.add("Зупинка Печерський 2");
-        busStopLviv.add("Зупинка Печерський 3");
-        busStopLviv.add("Зупинка Печерський 4");
-        busStopLviv.add("Зупинка Печерський 5");
-        busStopLviv.add("Зупинка Печерський 6");
-        busStopLviv.add("Зупинка Печерський 7");
-
-        mapForBusTop.put("Печерський район", busStopKyiv);
-
-
-    }
-
-
     public void createAreaToCity() {
         cityAreaSpinnerSettings = findViewById(R.id.spinnerCityArea);
-        //   cityAreaSpinnerSettings.setOnItemSelectedListener(this);
+        cityAreaSpinnerSettings.setOnItemSelectedListener(this);
 
         mapForKyiv = new HashMap<String, ArrayList<String>>();
 
@@ -250,111 +211,99 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+    public void createBusStop() {
+        spinnerStopBus = findViewById(R.id.spinnerBusStop);
+        spinnerStopBus.setOnItemSelectedListener(this);
 
+        mapForBusTop = new HashMap<String, ArrayList<String>>();
+
+        ArrayList<String> busStopLviv = new ArrayList<String>();
+        busStopLviv.add("Виберіть зупинку");
+        busStopLviv.add("Зупинка Личаківська 1");
+        busStopLviv.add("Зупинка Личаківська 2");
+        busStopLviv.add("Зупинка Личаківська 3");
+        busStopLviv.add("Зупинка Личаківська 4");
+        busStopLviv.add("Зупинка Личаківська 5");
+        busStopLviv.add("Зупинка Личаківська 6");
+        busStopLviv.add("Зупинка Личаківська 7");
+
+        mapForBusTop.put("Личаківський район", busStopLviv);
+
+        ArrayList<String> busStopKyiv = new ArrayList<String>();
+        busStopKyiv.add("Виберіть зупинку");
+        busStopKyiv.add("Зупинка Печерська 1");
+        busStopKyiv.add("Зупинка Печерська 2");
+        busStopKyiv.add("Зупинка Печерська 3");
+        busStopKyiv.add("Зупинка Печерська 4");
+        busStopKyiv.add("Зупинка Печерська 5");
+        busStopKyiv.add("Зупинка Печерська 6");
+        busStopKyiv.add("Зупинка Печерська 7");
+
+        mapForBusTop.put("Печерський район", busStopKyiv);
+
+    }
 
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-        citySpinnerSettings = findViewById(R.id.spinnerCity);
 
+        cityAreaSpinnerSettings = findViewById(R.id.spinnerCityArea);
+        spinnerStopBus = findViewById(R.id.spinnerBusStop);
 
-        String spinnerResultLviv = citySpinnerSettings.getSelectedItem().toString();
-
-        switch (spinnerResultLviv) {
-            case "Київ":
-                chooseModeForAreaSpinner();
-                break;
-
-            case "Львів":
-                chooseModeForAreaSpinner();
-                break;
-
-        }
+        chooseModeForAreaSpinner();
 
         spinnerAdapterForArea.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cityAreaSpinnerSettings.setAdapter(spinnerAdapterForArea);
         cityAreaSpinnerSettings.setSelection(position);
 
 
-
-
-
-        cityAreaSpinnerSettings = findViewById(R.id.spinnerCityArea);
-        spinnerStopBus = findViewById(R.id.spinnerBusStop);
-
-
-        String busStop = cityAreaSpinnerSettings.getSelectedItem().toString();
-
-        switch (busStop) {
-            case "Личаківський район":
-                chooseModeBusStop();
-                break;
-
-            case "Печерський район":
-                chooseModeBusStop();
-                break;
-
-        }
-
-
+        chooseModeBusStop();
 
         spinnerStopBusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerStopBus.setAdapter(spinnerStopBusAdapter);
         spinnerStopBus.setSelection(position);
 
-
-
-
     }
 
 
-
-    public void chooseModeForAreaSpinner(){
-
-        String spinnerResultLviv = citySpinnerSettings.getSelectedItem().toString();
+    public void chooseModeForAreaSpinner() {
 
         ArrayList<String> testArrayList = new ArrayList<>();
 
         for (Map.Entry<String, ArrayList<String>> entry : mapForKyiv.entrySet()) {
             String key = entry.getKey();
 
-            if (spinnerResultLviv.equals(key)) {
+            if (citySpinnerSettings.getSelectedItem().toString().equals(key)) {
                 ArrayList array = entry.getValue();
                 testArrayList.addAll(array);
             }
+
             spinnerAdapterForArea = new ArrayAdapter(this, android.R.layout.simple_spinner_item, testArrayList);
 
         }
     }
 
 
-    public void chooseModeBusStop(){
-
-        String spinnerResultLviv = cityAreaSpinnerSettings.getSelectedItem().toString();
+    public void chooseModeBusStop() {
 
         ArrayList<String> testArrayList = new ArrayList<>();
 
         for (Map.Entry<String, ArrayList<String>> entry : mapForBusTop.entrySet()) {
             String key = entry.getKey();
 
-            if (spinnerResultLviv.equals(key)) {
+            if (cityAreaSpinnerSettings.getSelectedItem().toString().equals(key)) {
                 ArrayList array = entry.getValue();
                 testArrayList.addAll(array);
             }
-
-            if(spinnerStopBusAdapter == null){
-                spinnerStopBusAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, testArrayList);
-            }
-           // spinnerStopBusAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, testArrayList);
+            spinnerStopBusAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, testArrayList);
 
         }
     }
 
 
-
     public void createGoupsCategory() {
         childrenGroupsSettings = findViewById(R.id.spinnerCategory);
-      //  childrenGroupsSettings.setOnItemSelectedListener(this); // присвоємо лісенер щоб наш клас прослуховував cобытие этого спиннера;
+        //  childrenGroupsSettings.setOnItemSelectedListener(this); // присвоємо лісенер щоб наш клас прослуховував cобытие этого спиннера;
 
         itemList = new ArrayList<String>();
         itemList.add("Виберіть категорію");
@@ -381,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void createChilderAge() {
         spinnerAgeChildren = findViewById(R.id.spinnerChildrenAge);
-       // spinnerAgeChildren.setOnItemSelectedListener(this); // присвоємо лісенер щоб наш клас прослуховував cобытие этого спиннера;
+        // spinnerAgeChildren.setOnItemSelectedListener(this); // присвоємо лісенер щоб наш клас прослуховував cобытие этого спиннера;
 
         itemList = new ArrayList<String>();
         itemList.add("Виберіть вік дитини");
@@ -400,18 +349,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
