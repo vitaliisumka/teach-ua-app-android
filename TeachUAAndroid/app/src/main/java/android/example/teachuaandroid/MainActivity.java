@@ -214,8 +214,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-// -------------------------------------------------------------------------
-
 
     public void createAreaToCity() {
         cityAreaSpinnerSettings = findViewById(R.id.spinnerCityArea);
@@ -278,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         cityAreaSpinnerSettings.setSelection(position);
 
 
-        //-------------------------------------------------------------------------------------------
+
 
 
         cityAreaSpinnerSettings = findViewById(R.id.spinnerCityArea);
@@ -409,7 +407,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-    //----------------------------------------------------------
+
 
 
 
